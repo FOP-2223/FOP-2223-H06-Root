@@ -61,7 +61,8 @@ public class StrangeFunctions {
      * @return just another mysterious result
      */
     public static boolean understandable2(double m, double n) {
-        return m <= 0 && n <= 0 || !(m <= 0) && !(n <= 0) && (m < n ? understandable2(m - 1, m + 2 * n) : understandable2(m, m - n));
+        //noinspection SimplifiableConditionalExpression
+        return m <= 0 && n <= 0 ? true : m <= 0 || n <= 0 ? false : m < n ? understandable2(m - 1, m + 2 * n) : understandable2(m, m - n);
     }
 
     /**
