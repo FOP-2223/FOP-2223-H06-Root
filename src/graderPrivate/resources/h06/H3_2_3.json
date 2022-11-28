@@ -6,5 +6,21 @@
       "expectedNextIndex": 20,
       "expectedType": "CORRECT"
     }
+  },
+  {
+    "data": {
+      "expression": "()()()()()()",
+      "index": 0,
+      "expectedNextIndex": 12,
+      "expectedType": "CORRECT"
+    }
+  },
+  {
+    "data": {
+      "expression": "([][{}{}{}][])()([][][])()([][][])()([][][])",
+      "index": 0,
+      "expectedNextIndex": 44,
+      "expectedType": "CORRECT"
+    }
   }
 ]
