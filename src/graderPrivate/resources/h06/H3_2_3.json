@@ -1,0 +1,10 @@
+[
+  {
+    "data": {
+      "expression": "([{}{}{}]){[()()()]}",
+      "index": 0,
+      "expectedNextIndex": 20,
+      "expectedType": "CORRECT"
+    }
+  }
+]

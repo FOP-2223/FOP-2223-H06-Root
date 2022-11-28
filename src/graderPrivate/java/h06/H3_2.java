@@ -24,4 +24,12 @@ public class H3_2 {
     ) {
         BracketExpressionStudent.test(data);
     }
+
+    @ParameterizedTest
+    @JsonClasspathSource("h06/H3_2_3.json")
+    public void t22(
+        @Property("data") BracketExpressionData data
+    ) {
+        BracketExpressionStudent.test(data);
+    }
 }
