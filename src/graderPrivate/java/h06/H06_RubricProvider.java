@@ -278,6 +278,7 @@ public class H06_RubricProvider implements RubricProvider {
             .requirePass(JUnitTestRef.ofMethod(() -> H3.class.getMethod("testRequirements")))
             .requirePass(JUnitTestRef.ofMethod(() -> H3_2.class.getMethod("t20", BracketExpressionData.class)))
             .requirePass(JUnitTestRef.ofMethod(() -> H3_2.class.getMethod("t21", BracketExpressionData.class)))
+            .requirePass(JUnitTestRef.ofMethod(() -> H3_2.class.getMethod("t22", BracketExpressionData.class)))
             .pointsPassedMax()
             .build()
         )
