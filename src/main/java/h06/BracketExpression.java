@@ -1,6 +1,8 @@
 package h06;
 
+import static h06.EvaluationResult.Type.CORRECT;
 import static h06.EvaluationResult.Type.INVALID_CHARACTER;
+import static h06.EvaluationResult.Type.INVALID_CLOSING_BRACKET;
 import static h06.EvaluationResult.Type.NO_OPENING_BRACKET;
 import static org.tudalgo.algoutils.student.Student.crash;
 
@@ -56,12 +58,19 @@ public class BracketExpression {
             // case 4: second index is the closing bracket of the opening bracket
             if (i + 2 < expression.length && isOpeningBracket(expression[i + 2])) {
                 // case 8: there is a closing bracket after sub-expression, but there is another character after the closing bracket
-                return evaluate(i + 2);
+                var evaluation = evaluate(i + 2);
+                if (i == 0 && evaluation.nextIndex() < expression.length && evaluation.type() == CORRECT) {
+                    return new EvaluationResult(
+                        isClosingBracket(expression[evaluation.nextIndex()]) ? NO_OPENING_BRACKET : INVALID_CHARACTER,
+                        evaluation.nextIndex()
+                    );
+                }
+                return evaluation;
             }
             return new EvaluationResult(EvaluationResult.Type.CORRECT, i + 2);
         } else if (isClosingBracket(char1)) {
             // case 5: second index is a closing bracket, but not the closing bracket of the opening bracket
-            return new EvaluationResult(EvaluationResult.Type.INVALID_CLOSING_BRACKET, i + 1);
+            return new EvaluationResult(INVALID_CLOSING_BRACKET, i + 1);
         }
         // evaluate sub-expression
         var next = evaluate(i + 1);
@@ -77,17 +86,20 @@ public class BracketExpression {
         if (getClosingBracket(char0) == nextChar) {
             if (next.nextIndex() + 1 < expression.length && isOpeningBracket(expression[next.nextIndex() + 1])) {
                 // case 8: there is a closing bracket after sub-expression, but there is another character after the closing bracket
-                return evaluate(next.nextIndex() + 1);
+                var evaluation = evaluate(next.nextIndex() + 1);
+                return evaluation;
             }
             // case 8: next index is the closing bracket of the opening bracket
             return new EvaluationResult(EvaluationResult.Type.CORRECT, next.nextIndex() + 1);
         } else if (isClosingBracket(nextChar)) {
             // case 9:
-            return new EvaluationResult(EvaluationResult.Type.INVALID_CLOSING_BRACKET, next.nextIndex());
+            return new EvaluationResult(INVALID_CLOSING_BRACKET, next.nextIndex());
         } else if (isOpeningBracket(nextChar)) {
             // case 10
             return new EvaluationResult(EvaluationResult.Type.NO_CLOSING_BRACKET, next.nextIndex());
         }
         return new EvaluationResult(INVALID_CHARACTER, next.nextIndex());
     }
+
+
 }
