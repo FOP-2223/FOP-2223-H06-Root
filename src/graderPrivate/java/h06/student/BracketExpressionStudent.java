@@ -52,8 +52,8 @@ public class BracketExpressionStudent {
         return callObject(
             () -> instance.evaluate(i),
             contextBuilder()
-                .add("expression", expression)
-                .add("i", i)
+                .add("expression", tt(expression))
+                .add("index", i)
                 .subject(LINK_TO_EVALUATE_2)
                 .build(),
             r -> "unexpected error"
