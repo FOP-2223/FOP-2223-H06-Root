@@ -22,5 +22,45 @@
       "expectedNextIndex": 44,
       "expectedType": "CORRECT"
     }
+  },
+  {
+    "data": {
+      "expression": "([{}{}][]))",
+      "index": 0,
+      "expectedNextIndex": 10,
+      "expectedType": "NO_OPENING_BRACKET"
+    }
+  },
+  {
+    "data": {
+      "expression": "([{}{}][])))))",
+      "index": 0,
+      "expectedNextIndex": 10,
+      "expectedType": "NO_OPENING_BRACKET"
+    }
+  },
+  {
+    "data": {
+      "expression": "([{}{}}][])",
+      "index": 0,
+      "expectedNextIndex": 6,
+      "expectedType": "INVALID_CLOSING_BRACKET"
+    }
+  },
+  {
+    "data": {
+      "expression": "([{}{}][])([{}{}][)])([{}{}][])",
+      "index": 0,
+      "expectedNextIndex": 18,
+      "expectedType": "INVALID_CLOSING_BRACKET"
+    }
+  },
+  {
+    "data": {
+      "expression": "([{}{}][])([{}{}]())[]([{}{}][]))",
+      "index": 0,
+      "expectedNextIndex": 32,
+      "expectedType": "NO_OPENING_BRACKET"
+    }
   }
 ]
