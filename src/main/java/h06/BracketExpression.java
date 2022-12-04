@@ -59,7 +59,7 @@ public class BracketExpression {
             if (i + 2 < expression.length && isOpeningBracket(expression[i + 2])) {
                 // case 8: there is a closing bracket after sub-expression, but there is another character after the closing bracket
                 var evaluation = evaluate(i + 2);
-                if (i == 0 && evaluation.nextIndex() < expression.length && evaluation.type() == CORRECT) {
+                if (i == 0 && evaluation.nextIndex()< expression.length && evaluation.type() == CORRECT) {
                     return new EvaluationResult(
                         isClosingBracket(expression[evaluation.nextIndex()]) ? NO_OPENING_BRACKET : INVALID_CHARACTER,
                         evaluation.nextIndex()
@@ -74,9 +74,16 @@ public class BracketExpression {
         }
         // evaluate sub-expression
         var next = evaluate(i + 1);
+
         if (next.type() != EvaluationResult.Type.CORRECT) {
             // case 6: sub-expression is not correct, return result of sub-expression
             return next;
+        }
+        if (i == 0 && next.nextIndex() + 1 < expression.length && isClosingBracket(expression[next.nextIndex() + 1])) {
+            return new EvaluationResult(
+                isClosingBracket(expression[next.nextIndex()]) ? NO_OPENING_BRACKET : INVALID_CHARACTER,
+                next.nextIndex() + 1
+            );
         }
         if (next.nextIndex() >= expression.length) {
             // case 7: there is no index after sub-expression, there cannot be a closing bracket
@@ -87,6 +94,12 @@ public class BracketExpression {
             if (next.nextIndex() + 1 < expression.length && isOpeningBracket(expression[next.nextIndex() + 1])) {
                 // case 8: there is a closing bracket after sub-expression, but there is another character after the closing bracket
                 var evaluation = evaluate(next.nextIndex() + 1);
+                if (i == 0 && evaluation.nextIndex() < expression.length && evaluation.type() == CORRECT) {
+                    return new EvaluationResult(
+                        isClosingBracket(expression[evaluation.nextIndex()]) ? NO_OPENING_BRACKET : INVALID_CHARACTER,
+                        evaluation.nextIndex()
+                    );
+                }
                 return evaluation;
             }
             // case 8: next index is the closing bracket of the opening bracket
