@@ -85,5 +85,11 @@ public class BracketExpressionStudent {
             .build();
         var expected = String.format("[nextIndex=%d, type=%s]", expectedIndex, expectedType);
         var actual = String.format("[nextIndex=%d, type=%s]", result.nextIndex(), result.type());
+        assertEquals(
+            expected,
+            actual,
+            context,
+            r -> "unexpected result"
+        );
     }
 }
