@@ -22,5 +22,29 @@
       "expectedNextIndex": 3,
       "expectedType": "NO_CLOSING_BRACKET"
     }
+  },
+  {
+    "data": {
+      "expression": "[]]",
+      "index": 0,
+      "expectedNextIndex": 2,
+      "expectedType": "NO_OPENING_BRACKET"
+    }
+  },
+  {
+    "data": {
+      "expression": "[])))",
+      "index": 0,
+      "expectedNextIndex": 2,
+      "expectedType": "NO_OPENING_BRACKET"
+    }
+  },
+  {
+    "data": {
+      "expression": "[[]])))",
+      "index": 0,
+      "expectedNextIndex": 4,
+      "expectedType": "NO_OPENING_BRACKET"
+    }
   }
 ]

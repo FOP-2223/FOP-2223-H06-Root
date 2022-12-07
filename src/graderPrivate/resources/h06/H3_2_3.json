@@ -62,5 +62,21 @@
       "expectedNextIndex": 32,
       "expectedType": "NO_OPENING_BRACKET"
     }
+  },
+  {
+    "data": {
+      "expression": "([{}{}][])([{}{}]())[]([{}{}][]))",
+      "index": 0,
+      "expectedNextIndex": 32,
+      "expectedType": "NO_OPENING_BRACKET"
+    }
+  },
+  {
+    "data": {
+      "expression": "[[(){}{}()]])))",
+      "index": 0,
+      "expectedNextIndex": 12,
+      "expectedType": "NO_OPENING_BRACKET"
+    }
   }
 ]
