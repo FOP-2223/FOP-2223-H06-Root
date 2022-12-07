@@ -59,13 +59,15 @@ public class BracketExpression {
             if (i + 2 < expression.length && isOpeningBracket(expression[i + 2])) {
                 // case 8: there is a closing bracket after sub-expression, but there is another character after the closing bracket
                 var evaluation = evaluate(i + 2);
-                if (i == 0 && evaluation.nextIndex()< expression.length && evaluation.type() == CORRECT) {
+                if (i == 0 && evaluation.nextIndex() < expression.length && evaluation.type() == CORRECT) {
                     return new EvaluationResult(
                         isClosingBracket(expression[evaluation.nextIndex()]) ? NO_OPENING_BRACKET : INVALID_CHARACTER,
                         evaluation.nextIndex()
                     );
                 }
                 return evaluation;
+            } else if (i == 0 && i + 2 < expression.length) {
+                return new EvaluationResult(isValidCharacter(expression[i + 2]) ? NO_OPENING_BRACKET : INVALID_CHARACTER, i + 2);
             }
             return new EvaluationResult(EvaluationResult.Type.CORRECT, i + 2);
         } else if (isClosingBracket(char1)) {
