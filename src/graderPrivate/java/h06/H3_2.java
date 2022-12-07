@@ -14,7 +14,7 @@ public class H3_2 {
     public void t20(
         @Property("data") BracketExpressionData data
     ) {
-        BracketExpressionStudent.test(data);
+        BracketExpressionStudent.testEvaluate1(data);
     }
 
     @ParameterizedTest
@@ -22,7 +22,7 @@ public class H3_2 {
     public void t21(
         @Property("data") BracketExpressionData data
     ) {
-        BracketExpressionStudent.test(data);
+        BracketExpressionStudent.testEvaluate1(data);
     }
 
     @ParameterizedTest
@@ -30,6 +30,6 @@ public class H3_2 {
     public void t22(
         @Property("data") BracketExpressionData data
     ) {
-        BracketExpressionStudent.test(data);
+        BracketExpressionStudent.testEvaluate1(data);
     }
 }
