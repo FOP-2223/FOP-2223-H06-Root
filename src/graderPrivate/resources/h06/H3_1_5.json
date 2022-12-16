@@ -33,6 +33,14 @@
   },
   {
     "data": {
+      "expression": "[[]]]",
+      "index": 1,
+      "expectedNextIndex": 3,
+      "expectedType": "CORRECT"
+    }
+  },
+  {
+    "data": {
       "expression": "[])))",
       "index": 0,
       "expectedNextIndex": 2,
