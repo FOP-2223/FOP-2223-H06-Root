@@ -152,18 +152,35 @@ public abstract class H1_1 {
 
     @Test
     public void t5_3() {
-        if (!(return3() instanceof CtBinaryOperator<?> binaryOperator) ||
-            binaryOperator.getKind() != BinaryOperatorKind.DIV ||
-            !(binaryOperator.getLeftHandOperand() instanceof CtVariableRead<?> l) ||
-            !(binaryOperator.getRightHandOperand() instanceof CtVariableRead<?> r) ||
-            !l.getVariable().getSimpleName().equals(m()) ||
-            !r.getVariable().getSimpleName().equals(n()) ||
-            (Stream.concat(l.getTypeCasts().stream(), r.getTypeCasts().stream()).noneMatch(c -> c.getSimpleName().equals("double")))
+        if (
+            return3() instanceof CtBinaryOperator<?> binaryOperator &&
+            binaryOperator.getKind() == BinaryOperatorKind.DIV
         ) {
+            if (
+                binaryOperator.getLeftHandOperand() instanceof CtVariableRead<?> left &&
+                binaryOperator.getRightHandOperand() instanceof CtVariableRead<?> right
+            ) {
+                if (
+                    left.getVariable().getSimpleName().equals(m()) &&
+                    right.getVariable().getSimpleName().equals(n())
+                ) {
+                    if ((Stream.concat(left.getTypeCasts().stream(), right.getTypeCasts().stream()).anyMatch(c -> c.getSimpleName().equals("double")))) {
+                        return;
+                    }
+                    fail(
+                        context(),
+                        r -> "third return statement does not contain a cast to double"
+                    );
+                }
+            }
             fail(
                 context(),
-                r -> "second else statement does not contain a correct return statement"
+                r -> "third return statement does not contain a correct return statement"
             );
         }
+        fail(
+            context(),
+            r -> "third return statement does not contain a division"
+        );
     }
 }
